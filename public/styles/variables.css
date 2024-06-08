@@ -1,0 +1,14 @@
+@import url('./fonts.css');
+
+:root {
+  --font-regular: 'Jost Regular', 'Arial', sans-serif;
+  --font-semi-bold: 'Jost SemiBold', 'Arial', sans-serif;
+  --font-bold: 'Jost Bold', 'Arial', sans-serif;
+
+  --white: #ffffff;
+  --purple: #484283;
+  --orange: #f14f4f;
+  --grey: #444b58;
+  --grey-light: #b2b5bb;
+  --grey-lighter: #f6f6f6;
+}

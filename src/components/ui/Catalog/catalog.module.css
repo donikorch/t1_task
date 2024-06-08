@@ -1,0 +1,37 @@
+@import url('/styles/variables.css');
+
+.catalog {
+  width: 100%;
+  max-width: 1180px;
+  margin-top: 54px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.catalog h3 {
+  color: var(--grey);
+  align-self: flex-start;
+  font-family: var(--font-bold);
+  font-size: 30px;
+  line-height: 43.35px;
+}
+
+.section {
+  margin-top: 40px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+@media screen and (max-width: 1179px) {
+  .catalog {
+    width: 90%;
+  }
+}
+
+@media screen and (max-width: 850px) {
+  .section {
+    flex-direction: column;
+  }
+}

@@ -1,0 +1,61 @@
+.article {
+  width: 370px;
+  height: 351px;
+  margin-bottom: 40px;
+}
+
+.article a {
+  text-decoration: none;
+}
+
+.article img {
+  width: 100%;
+  transition: 0.5s ease;
+}
+
+.info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 7px;
+  color: var(--grey);
+}
+
+.info h4 {
+  font-family: var(--font-semi-bold);
+  font-size: 16px;
+  line-height: 23.12px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.text {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex-grow: 1;
+  margin-right: 20px;
+  min-width: 0;
+}
+
+.price {
+  font-size: 18px;
+  line-height: 26.01px;
+  margin-top: -1px;
+}
+
+.article:hover img {
+  filter: brightness(90%);
+}
+
+.article:hover h4 {
+  text-decoration: underline;
+}
+
+@media screen and (max-width: 450px) {
+  .article {
+    width: 300px;
+    height: 279px;
+  }
+}

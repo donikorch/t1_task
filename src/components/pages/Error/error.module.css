@@ -1,0 +1,10 @@
+@import url('/styles/variables.css');
+
+.error {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  font-family: var(--font-bold);
+  font-size: 128px;
+  color: var(--grey);
+}

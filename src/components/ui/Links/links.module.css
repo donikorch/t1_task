@@ -1,0 +1,21 @@
+@import url('/styles/variables.css');
+
+.link {
+  color: var(--white);
+  text-decoration: none;
+  transition: 0.5s ease;
+  font-family: var(--font-semi-bold);
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  transition: 0.5s ease;
+}
+
+.link svg {
+  margin-left: 6px;
+}
+
+.link:hover {
+  color: #c4c4c4;
+  text-decoration: underline;
+}

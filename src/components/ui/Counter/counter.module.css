@@ -1,0 +1,30 @@
+@import url('/styles/variables.css');
+
+.counter {
+  display: flex;
+}
+
+.count {
+  background: var(--grey-lighter);
+  border-radius: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--grey);
+}
+
+.count.small {
+  width: 62px;
+  height: 48px;
+  margin: 0px 8px 0px 9px;
+  font-size: 14px;
+  line-height: 19.6px;
+}
+
+.count.big {
+  width: 73.27px;
+  height: 48px;
+  margin: 0px 10.64px 0px 9.45px;
+  font-size: 14px;
+  line-height: 22.4px;
+}

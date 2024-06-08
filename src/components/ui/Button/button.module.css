@@ -1,0 +1,59 @@
+@import url('/styles/variables.css');
+
+.button {
+  all: initial;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 4px;
+  font-family: var(--font-regular);
+  font-size: 16px;
+}
+
+.button.default,
+.button.cart,
+.button.plus,
+.button.minus {
+  background: var(--orange);
+  transition: 0.5s ease;
+}
+
+.button.default {
+  width: 200px;
+  height: 67px;
+}
+
+.button.default.big {
+  width: 300px;
+  height: 67px;
+}
+
+.button.plus.big,
+.button.minus.big {
+  width: 56.73px;
+  height: 48px;
+}
+
+.button.cart,
+.button.plus,
+.button.minus {
+  width: 48px;
+  height: 48px;
+}
+
+.button.default:hover,
+.button.cart:hover,
+.button.plus:hover,
+.button.minus:hover {
+  background: #8c2828;
+}
+
+@media screen and (max-width: 450px) {
+  .button.default,
+  .button.default.big {
+    height: 52px;
+    min-width: 48px;
+    font-size: 14px;
+  }
+}

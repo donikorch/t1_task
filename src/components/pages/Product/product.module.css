@@ -1,0 +1,51 @@
+@import url('/styles/variables.css');
+
+.product {
+  width: 100%;
+  max-width: 1180px;
+  margin-top: 55px;
+  margin-bottom: 46px;
+}
+
+.product h3 {
+  color: var(--grey);
+  align-self: flex-start;
+  font-family: var(--font-bold);
+  font-size: 30px;
+  line-height: 43.35px;
+}
+
+.section {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 55px;
+}
+
+.skuId p {
+  font-family: var(--font-semi-bold);
+  font-size: 16px;
+  line-height: 23.12px;
+  color: var(--grey-light);
+}
+
+.skuId span {
+  margin-left: 10px;
+  color: var(--grey);
+}
+
+.skuId {
+  margin-top: 7px;
+}
+
+@media screen and (max-width: 1210px) {
+  .product {
+    width: 90%;
+  }
+}
+
+@media screen and (max-width: 880px) {
+  .section {
+    display: flex;
+    flex-direction: column;
+  }
+}

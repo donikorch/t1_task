@@ -1,0 +1,110 @@
+@import url('/styles/variables.css');
+
+.image {
+  width: 100px;
+  height: 57px;
+}
+
+.line,
+.buttons,
+.container {
+  display: flex;
+  align-items: center;
+}
+
+.line {
+  width: 686.28px;
+  height: 100px;
+}
+
+.line a {
+  text-decoration: none;
+}
+
+.container:hover h4 {
+  text-decoration: underline;
+}
+
+.buttons {
+  margin-left: 75px;
+}
+
+.buttons a {
+  font-size: 14px;
+  line-height: 20.23px;
+  color: var(--grey-light);
+  text-decoration: none;
+  margin-left: 64px;
+  transition: 0.5s ease;
+}
+
+.buttons a:hover {
+  color: var(--grey);
+  text-decoration: underline;
+}
+
+.info {
+  margin-left: 10px;
+  margin-top: 1px;
+  color: var(--grey);
+}
+
+.info h4 {
+  font-family: var(--font-semi-bold);
+  font-size: 16px;
+  line-height: 23.12px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.price {
+  font-size: 18px;
+  line-height: 26.01px;
+  margin-top: -1px;
+}
+
+@media screen and (max-width: 860px) {
+  .line {
+    width: 100%;
+    flex-direction: column;
+    margin-bottom: 50px;
+  }
+
+  .container {
+    width: 100%;
+  }
+
+  .buttons {
+    width: 100%;
+    align-content: start;
+    margin-top: 10px;
+    margin-left: 0;
+  }
+}
+
+@media screen and (max-width: 430px) {
+  .line {
+    margin-bottom: 100px;
+  }
+
+  .line a {
+    flex-direction: column;
+    align-items: start;
+  }
+
+  .buttons a {
+    margin-left: 20px;
+  }
+
+  .buttons {
+    width: 100%;
+    align-content: start;
+  }
+
+  .info {
+    margin-left: 0;
+    margin-top: 1px;
+    color: var(--grey);
+  }
+}

@@ -1,0 +1,94 @@
+@import url('/styles/variables.css');
+
+.nav.primary,
+.nav.secondary {
+  width: 100%;
+}
+
+.nav.primary .navList,
+.nav.secondary .navList {
+  display: flex;
+  align-items: center;
+  list-style: none;
+}
+
+.nav.primary .navList {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+  height: 48px;
+}
+
+.nav.secondary .navList {
+  height: 80px;
+}
+
+.primary li,
+.secondary li {
+  margin-left: 34px;
+  text-decoration: none;
+}
+
+.primary li {
+  margin-left: 34px;
+  text-decoration: none;
+  margin-bottom: 5px;
+}
+
+.navList li:first-child {
+  margin-left: 0;
+  margin-right: auto;
+}
+
+.logo {
+  color: var(--white);
+  text-decoration: none;
+  transition: 0.5s ease;
+  font-family: var(--font-bold);
+  font-size: 30px;
+}
+
+.hamburger.primary,
+.hamburger.secondary,
+.bottom {
+  display: none;
+}
+
+.menu {
+  list-style: none;
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: 0.3s ease;
+}
+
+.menu.open {
+  opacity: 1;
+  max-height: 110px;
+}
+
+.menu li {
+  margin-top: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+@media screen and (max-width: 450px) {
+  .navList li:not(:first-child):not(:last-child) {
+    display: none;
+  }
+
+  .hamburger.primary,
+  .hamburger.secondary:not(.bottom) {
+    display: block;
+  }
+
+  .menu {
+    border-left: 20px solid var(--purple);
+    border-right: 20px solid var(--purple);
+    border-bottom: 15px solid var(--purple);
+    background: var(--purple);
+  }
+
+  .menu li {
+    margin-top: 10px;
+  }
+}

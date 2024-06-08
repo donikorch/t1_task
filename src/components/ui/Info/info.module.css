@@ -1,0 +1,53 @@
+@import url('/styles/variables.css');
+
+.info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-left: -60px;
+}
+
+.info h2 {
+  font-family: var(--font-semi-bold);
+  font-size: 24px;
+  line-height: 33.6px;
+  color: var(--grey);
+  margin-bottom: 48px;
+}
+
+.info p {
+  margin-top: 22.5px;
+}
+
+.info p {
+  font-family: var(--font-semi-bold);
+  font-size: 16px;
+  line-height: 23.12px;
+  color: var(--grey-light);
+}
+
+.info span {
+  margin-left: 10px;
+  color: var(--grey);
+}
+
+.info button {
+  margin-bottom: 3px;
+}
+
+.rating svg {
+  margin-right: 8.5px;
+}
+
+@media screen and (max-width: 1210px) {
+  .info button {
+    margin-top: 30px;
+  }
+}
+
+@media screen and (max-width: 880px) {
+  .info {
+    margin-top: 50px;
+    margin-left: 0;
+  }
+}
