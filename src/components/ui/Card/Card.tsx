@@ -12,7 +12,7 @@ function Card({ index, counter = false }: CardProps) {
   return (
     <article className={styles.article} aria-labelledby={`card-title-${index}`}>
       <Link to={`/product/${index}`}>
-        <img src='/images/shoes_1.png' alt='Product Image' />
+        <img src='/images/shoes_1.png' alt='Product Image' loading='lazy' />
         <div className={styles.info}>
           <div className={styles.text}>
             <h4 id={`card-title-${index}`}>Essence Mascara Lash Princess</h4>

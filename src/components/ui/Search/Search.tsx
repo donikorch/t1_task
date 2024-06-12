@@ -2,7 +2,7 @@ import styles from './search.module.css';
 import Button from '../Button/Button';
 import Input from '../Input/Input';
 
-interface SearchProps {
+export interface SearchProps {
   placeholder: string;
   text: string;
 }

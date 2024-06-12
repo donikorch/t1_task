@@ -1,6 +1,9 @@
 @import url('/styles/variables.css');
 
 .question {
+  background: var(--purple);
+  font-family: var(--font-regular);
+  color: var(--white);
   border-top: 1px solid var(--white);
   width: 100%;
   cursor: pointer;

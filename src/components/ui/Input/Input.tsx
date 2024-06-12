@@ -1,6 +1,6 @@
 import styles from './input.module.css';
 
-interface InputProps {
+export interface InputProps {
   placeholder: string;
   id: string;
 }

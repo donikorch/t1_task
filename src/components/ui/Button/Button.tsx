@@ -5,17 +5,17 @@ import React from 'react';
 
 import ComponentProps from '../../interfaces';
 
-interface ButtonProps extends Omit<ComponentProps, 'variant'> {
+export interface ButtonProps extends Omit<ComponentProps, 'variant'> {
   children?: string | React.ReactNode;
   variant?: 'default' | 'plus' | 'minus' | 'cart';
   size?: 'big' | 'small';
 }
 
-function Button({
+const Button: React.FC<ButtonProps> = ({
   children,
   variant = 'default',
   size = 'small',
-}: ButtonProps) {
+}) => {
   let content: JSX.Element | React.ReactNode | string | undefined = children;
 
   if (variant === 'cart') {
@@ -28,10 +28,11 @@ function Button({
     <button
       type='button'
       className={`${styles.button} ${styles[variant]} ${styles[size]}`}
+      aria-label={typeof children === 'string' ? children : 'Button'}
     >
       {content}
     </button>
   );
-}
+};
 
 export default Button;
