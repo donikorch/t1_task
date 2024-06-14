@@ -2,31 +2,34 @@ import styles from './home.module.css';
 import Catalog from '../../ui/Catalog/Catalog';
 import Button from '../../ui/Button/Button';
 import Layout from '../Layout/Layout';
-import { useLocation } from 'react-router-dom';
-import { useEffect } from 'react';
-
-function scroll() {
-  const hash = window.location.hash;
-  if (hash) {
-    const item = document.querySelector(hash);
-    if (item) {
-      item.scrollIntoView({ behavior: 'smooth' });
-    }
-  }
-}
+import Loading from '../../ui/Loading/Loading';
+import { useProductData } from '../../../app/hooks/useProductData';
+import { useScrollToHash } from '../../../app/hooks/useScrollToHash';
 
 function Home() {
-  const location = useLocation();
+  const { products, isLoading, error, handleShowMore } = useProductData();
+  useScrollToHash(isLoading);
 
-  useEffect(() => {
-    scroll();
-  }, [location]);
+  if (isLoading && products.length === 0)
+    return <Loading isLoading={isLoading} />;
+
+  if (error) {
+    if ('status' in error) {
+      const message =
+        'error' in error ? error.error : JSON.stringify(error.data);
+      return <p>{message}</p>;
+    } else {
+      return <p>{error.message ?? 'Unknown error'}</p>;
+    }
+  }
 
   return (
     <Layout>
-      <Catalog />
+      <Catalog products={products} />
       <div className={styles.button}>
-        <Button aria-label='Show more products'>Show more</Button>
+        <Button aria-label='Show more products' onClick={handleShowMore}>
+          Show more
+        </Button>
       </div>
     </Layout>
   );

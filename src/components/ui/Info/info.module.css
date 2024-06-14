@@ -4,7 +4,8 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  margin-left: -60px;
+  margin-left: -3px;
+  height: 557.11px;
 }
 
 .info h2 {
@@ -37,6 +38,17 @@
 
 .rating svg {
   margin-right: 8.5px;
+}
+
+.description {
+  max-width: 410px;
+  max-height: 70px;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  white-space: normal;
 }
 
 @media screen and (max-width: 1210px) {

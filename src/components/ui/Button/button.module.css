@@ -31,8 +31,14 @@
 
 .button.plus.big,
 .button.minus.big {
-  width: 56.73px;
-  height: 48px;
+  width: 67px;
+  height: 67px;
+}
+
+.button.plus.big svg,
+.button.minus.big svg {
+  width: 31px;
+  height: 31px;
 }
 
 .button.cart,
