@@ -5,17 +5,21 @@ import React from 'react';
 
 import ComponentProps from '../../interfaces';
 
-interface ButtonProps extends Omit<ComponentProps, 'variant'> {
+export interface ButtonProps extends Omit<ComponentProps, 'variant'> {
   children?: string | React.ReactNode;
   variant?: 'default' | 'plus' | 'minus' | 'cart';
   size?: 'big' | 'small';
+  onClick?: () => void;
+  type?: 'button' | 'submit' | 'reset';
 }
 
-function Button({
+const Button: React.FC<ButtonProps> = ({
   children,
   variant = 'default',
   size = 'small',
-}: ButtonProps) {
+  onClick,
+  type = 'button',
+}) => {
   let content: JSX.Element | React.ReactNode | string | undefined = children;
 
   if (variant === 'cart') {
@@ -26,12 +30,14 @@ function Button({
 
   return (
     <button
-      type='button'
+      type={type}
       className={`${styles.button} ${styles[variant]} ${styles[size]}`}
+      aria-label={typeof children === 'string' ? children : 'Button'}
+      onClick={onClick}
     >
       {content}
     </button>
   );
-}
+};
 
 export default Button;

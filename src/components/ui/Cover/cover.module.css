@@ -1,19 +1,33 @@
-.image,
-.imageBig {
+.image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
   width: 520px;
+}
+
+.imageBig {
+  width: 100%;
+  height: 461.42px;
+  object-fit: contain;
 }
 
 .images {
   display: flex;
-  justify-content: space-between;
+  width: 100%;
   margin-top: 17px;
 }
 
-.firstImage {
-  position: relative;
+.imageSmall:not(:last-child) {
+  margin-right: 20px;
 }
 
-.firstImage::before {
+.imageSmall {
+  position: relative;
+  object-fit: contain;
+}
+
+.selected::before {
   content: '';
   position: absolute;
   top: 0;
@@ -26,8 +40,7 @@
   box-sizing: border-box;
 }
 
-.imageSmall,
-.firstImage {
+.imageSmall {
   width: 70px;
   height: 75.71px;
 }
@@ -39,8 +52,7 @@
     width: 80%;
   }
 
-  .imageSmall,
-  .firstImage {
+  .imageSmall {
     width: 60px;
     height: 65.71px;
   }
@@ -53,8 +65,7 @@
     width: 400px;
   }
 
-  .imageSmall,
-  .firstImage {
+  .imageSmall {
     width: 60px;
     height: 65.71px;
   }
@@ -67,8 +78,7 @@
     width: 280px;
   }
 
-  .imageSmall,
-  .firstImage {
+  .imageSmall {
     width: 40px;
     height: 45.71px;
   }

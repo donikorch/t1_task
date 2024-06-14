@@ -1,48 +1,79 @@
+import { useAppSelector } from '../../../app/store';
+import { Order, Product } from '../../types';
 import Button from '../Button/Button';
+import Counter from '../Counter/Counter';
 import StarIcon from '../Icons/StarIcon';
 import styles from './info.module.css';
 
-function Info() {
-  const array = new Array(5).fill(0);
+type InfoProps = {
+  item: Product;
+};
+
+function Info({ item }: InfoProps) {
+  const carts = useAppSelector((store) => store.carts.carts);
+  const product: Order = carts[0].products.filter(
+    (product: Product) => product.id === item.id,
+  )[0];
+
+  const stars = new Array(Math.round(item.rating)).fill(0);
+  const discountPrice =
+    item.price - item.price * (item.discountPercentage / 100);
 
   return (
     <div className={styles.info}>
       <div>
-        <h2>Puma Force 1 Shadow</h2>
+        <h2>{item.title}</h2>
         <div>
           <p>
             Rating
             <span className={styles.rating}>
-              {array.map((_, index) => (
-                <StarIcon key={index} aria-label={`Star ${index + 1}`} />
+              {stars.map((_, index) => (
+                <StarIcon
+                  color='#F14F4F'
+                  key={index}
+                  aria-label={`Star ${index + 1}`}
+                />
+              ))}
+              {new Array(5 - stars.length).fill(0).map((_, index) => (
+                <StarIcon
+                  color='#B2B5BB'
+                  key={index}
+                  aria-label={`Star ${index + 1}`}
+                />
               ))}
             </span>
           </p>
           <p>
-            Base price<span>500$</span>
+            Base price<span>{item.price}$</span>
           </p>
           <p>
-            Discount percentage<span>10%</span>
+            Discount percentage<span>{item.discountPercentage}%</span>
           </p>
           <p>
-            Discount price<span>450$</span>
+            Discount price<span>{discountPrice.toFixed(2)}$</span>
           </p>
           <p>
-            Stock<span>13</span>
+            Stock<span>{item.stock}</span>
           </p>
           <p>
-            Brand<span>Puma</span>
+            Brand<span>{item.brand || 'None'}</span>
           </p>
           <p>
-            Category<span>Smartphones</span>
+            Category<span>{item.category}</span>
           </p>
-          <p>
+          <p className={styles.description}>
             Description
-            <span>An apple mobile which is nothing like apple</span>
+            <span>{item.description}</span>
           </p>
         </div>
       </div>
-      <Button aria-label='Add to cart'>Add to cart</Button>
+      {product ? (
+        <>
+          <Counter size='big' count={product.quantity} />
+        </>
+      ) : (
+        <Button aria-label='Add to cart'>Add to cart</Button>
+      )}
     </div>
   );
 }
