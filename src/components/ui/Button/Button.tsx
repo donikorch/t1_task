@@ -10,6 +10,7 @@ export interface ButtonProps extends Omit<ComponentProps, 'variant'> {
   variant?: 'default' | 'plus' | 'minus' | 'cart';
   size?: 'big' | 'small';
   onClick?: () => void;
+  type?: 'button' | 'submit' | 'reset';
 }
 
 const Button: React.FC<ButtonProps> = ({
@@ -17,6 +18,7 @@ const Button: React.FC<ButtonProps> = ({
   variant = 'default',
   size = 'small',
   onClick,
+  type = 'button',
 }) => {
   let content: JSX.Element | React.ReactNode | string | undefined = children;
 
@@ -28,7 +30,7 @@ const Button: React.FC<ButtonProps> = ({
 
   return (
     <button
-      type='button'
+      type={type}
       className={`${styles.button} ${styles[variant]} ${styles[size]}`}
       aria-label={typeof children === 'string' ? children : 'Button'}
       onClick={onClick}

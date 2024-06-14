@@ -7,7 +7,14 @@ import { useProductData } from '../../../app/hooks/useProductData';
 import { useScrollToHash } from '../../../app/hooks/useScrollToHash';
 
 function Home() {
-  const { products, isLoading, error, handleShowMore } = useProductData();
+  const {
+    products,
+    isLoading,
+    error,
+    handleShowMore,
+    handleInput,
+    handleButton,
+  } = useProductData();
   useScrollToHash(isLoading);
 
   if (isLoading && products.length === 0)
@@ -25,7 +32,11 @@ function Home() {
 
   return (
     <Layout>
-      <Catalog products={products} />
+      <Catalog
+        products={products}
+        onInput={handleInput}
+        onButton={handleButton}
+      />
       <div className={styles.button}>
         <Button aria-label='Show more products' onClick={handleShowMore}>
           Show more
