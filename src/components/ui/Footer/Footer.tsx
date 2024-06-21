@@ -1,9 +1,9 @@
 import styles from './footer.module.css';
 import Nav from '../Nav/Nav';
 import Question from '../Question/Question';
-import ComponentProps from '../../interfaces';
+import { ComponentsProps } from '../../interfaces';
 
-function Footer({ variant = 'primary' }: ComponentProps) {
+function Footer({ variant = 'primary' }: ComponentsProps) {
   return (
     <footer className={styles.footer}>
       {variant === 'primary' && (

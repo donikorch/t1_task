@@ -3,14 +3,16 @@ import styles from './nav.module.css';
 import Links from '../Links/Links';
 import { useState } from 'react';
 
-import ComponentProps from '../../interfaces';
+import { ComponentsProps } from '../../interfaces';
+import { useAppSelector } from '../../../app/store';
 
-interface NavProps extends ComponentProps {
+interface NavProps extends ComponentsProps {
   bottom?: boolean;
 }
 
 function Nav({ variant = 'primary', size = 'big', bottom = false }: NavProps) {
   const [isOpen, setIsOpen] = useState(false);
+  const user = useAppSelector((state) => state.user.user);
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -28,25 +30,34 @@ function Nav({ variant = 'primary', size = 'big', bottom = false }: NavProps) {
               Goods4you
             </Link>
           </li>
-          <Links variant={variant} size={size} />
-          <li
-            className={`${styles.hamburger} ${styles[variant]} ${
-              bottom ? styles.bottom : ''
-            }`}
-            onClick={toggleMenu}
-            aria-expanded={isOpen}
-            aria-controls='menu'
-            aria-label='Toggle navigation menu'
-          >
-            Menu
-          </li>
+          {user && (
+            <>
+              <Links variant={variant} size={size} />
+              <li
+                className={`${styles.hamburger} ${styles[variant]} ${
+                  bottom ? styles.bottom : ''
+                }`}
+                onClick={toggleMenu}
+                aria-expanded={isOpen}
+                aria-controls='menu'
+                aria-label='Toggle navigation menu'
+              >
+                Menu
+              </li>
+            </>
+          )}
         </ul>
       </nav>
-      <div className={`${styles.menu} ${isOpen ? styles.open : ''}`} id='menu'>
-        <ul>
-          <Links variant={variant} menu={true} size={size} />
-        </ul>
-      </div>
+      {user && (
+        <div
+          className={`${styles.menu} ${isOpen ? styles.open : ''}`}
+          id='menu'
+        >
+          <ul>
+            <Links variant={variant} menu={true} size={size} />
+          </ul>
+        </div>
+      )}
     </>
   );
 }

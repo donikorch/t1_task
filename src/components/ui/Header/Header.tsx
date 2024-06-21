@@ -2,9 +2,9 @@ import Button from '../Button/Button';
 import Nav from '../Nav/Nav';
 import styles from './header.module.css';
 
-import ComponentProps from '../../interfaces';
+import { ComponentsProps } from '../../interfaces';
 
-function Header({ variant = 'primary', size = 'big' }: ComponentProps) {
+function Header({ variant = 'primary', size = 'big' }: ComponentsProps) {
   return (
     <header className={`${styles.header} ${styles[variant]}`}>
       <div className={styles.container}>

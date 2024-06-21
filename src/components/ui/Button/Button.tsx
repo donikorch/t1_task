@@ -3,19 +3,25 @@ import CartIcon from '../Icons/CartIcon';
 import PlusMinusIcon from '../Icons/PlusMinusIcon';
 import React from 'react';
 
-import ComponentProps from '../../interfaces';
+import { ComponentsProps } from '../../interfaces';
 
-interface ButtonProps extends Omit<ComponentProps, 'variant'> {
+export interface ButtonProps extends Omit<ComponentsProps, 'variant'> {
   children?: string | React.ReactNode;
   variant?: 'default' | 'plus' | 'minus' | 'cart';
   size?: 'big' | 'small';
+  onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
+  type?: 'button' | 'submit' | 'reset';
+  disabled?: boolean;
 }
 
-function Button({
+const Button: React.FC<ButtonProps> = ({
   children,
   variant = 'default',
   size = 'small',
-}: ButtonProps) {
+  onClick,
+  type = 'button',
+  disabled = false,
+}) => {
   let content: JSX.Element | React.ReactNode | string | undefined = children;
 
   if (variant === 'cart') {
@@ -26,12 +32,15 @@ function Button({
 
   return (
     <button
-      type='button'
-      className={`${styles.button} ${styles[variant]} ${styles[size]}`}
+      type={type}
+      className={`${styles.button} ${styles[variant]} ${styles[size]} ${disabled ? styles.disabled : ''}`}
+      aria-label={typeof children === 'string' ? children : 'Button'}
+      onClick={onClick}
+      disabled={disabled}
     >
       {content}
     </button>
   );
-}
+};
 
 export default Button;

@@ -31,8 +31,14 @@
 
 .button.plus.big,
 .button.minus.big {
-  width: 56.73px;
-  height: 48px;
+  width: 67px;
+  height: 67px;
+}
+
+.button.plus.big svg,
+.button.minus.big svg {
+  width: 31px;
+  height: 31px;
 }
 
 .button.cart,
@@ -47,6 +53,15 @@
 .button.plus:hover,
 .button.minus:hover {
   background: #8c2828;
+}
+
+.button.disabled {
+  cursor: not-allowed;
+  opacity: 0.75;
+}
+
+.button.disabled:hover {
+  background-color: var(--orange);
 }
 
 @media screen and (max-width: 450px) {

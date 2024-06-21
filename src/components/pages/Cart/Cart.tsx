@@ -1,30 +1,44 @@
+import { useAppSelector } from '../../../app/store';
 import OrderLine from '../../ui/OrderLine/OrderLine';
 import Layout from '../Layout/Layout';
+import { Order } from '../../types';
 import styles from './cart.module.css';
 
 function Cart() {
-  const array = new Array(3).fill(0);
+  const carts = useAppSelector((store) => store.carts.carts);
 
   return (
     <Layout variant='secondary' size='small'>
       <section className={styles.cart} aria-labelledby='cart-title'>
         <h3 id='cart-title'>My Cart</h3>
         <article className={styles.section}>
-          <div className={styles.container}>
-            {array.map((_, index) => (
-              <OrderLine key={index} index={index + 1} />
-            ))}
-          </div>
+          {carts[0] ? (
+            <div className={styles.container}>
+              {carts[0]?.products.map((item: Order) => (
+                <OrderLine key={item.id} index={item.id} item={item} />
+              ))}
+            </div>
+          ) : (
+            <p className={styles.empty}>Cart is empty</p>
+          )}
           <div className={styles.info}>
             <p>
-              Total count:<span aria-label='total item count'>3</span>
+              Total count:
+              <span aria-label='total item count'>
+                {carts[0]?.totalProducts || 0}
+              </span>
             </p>
             <p>
-              Total price:<span aria-label='total price'>700$</span>
+              Total price:
+              <span aria-label='total price'>
+                {carts[0]?.total.toFixed(2) || 0}$
+              </span>
             </p>
             <p>
               Total price with discount:
-              <span aria-label='total price with discount'>590$</span>
+              <span aria-label='total price with discount'>
+                {carts[0]?.discountedTotal.toFixed(2) || 0}$
+              </span>
             </p>
           </div>
         </article>

@@ -2,9 +2,10 @@ import { Link, NavLink } from 'react-router-dom';
 import styles from './links.module.css';
 import CartIcon from '../Icons/CartIcon';
 
-import ComponentProps from '../../interfaces';
+import { ComponentsProps } from '../../interfaces';
+import { useAppSelector } from '../../../app/store';
 
-interface LinksProps extends ComponentProps {
+interface LinksProps extends ComponentsProps {
   menu?: boolean;
 }
 
@@ -13,6 +14,8 @@ function Links({
   menu = false,
   size = 'big',
 }: LinksProps) {
+  const carts = useAppSelector((store) => store.carts.carts);
+
   return (
     <>
       <li>
@@ -28,7 +31,10 @@ function Links({
       {(variant === 'primary' || size === 'small') && (
         <li>
           <Link to='/cart' className={styles.link} aria-label='Cart'>
-            Cart {!menu && <CartIcon counter={true} />}
+            Cart{' '}
+            {!menu && (
+              <CartIcon counter={true} count={carts[0]?.totalProducts} />
+            )}
           </Link>
         </li>
       )}
