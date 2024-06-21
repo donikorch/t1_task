@@ -8,7 +8,11 @@ import Loading from '../../ui/Loading/Loading';
 
 function Product() {
   const { id } = useParams();
-  const { data, error, isLoading } = useGetProductsByIdQuery(id);
+  const accessToken = localStorage.getItem('access');
+  const { data, error, isLoading } = useGetProductsByIdQuery({
+    productId: id,
+    token: accessToken,
+  });
 
   if (isLoading) return <Loading isLoading={isLoading} />;
 

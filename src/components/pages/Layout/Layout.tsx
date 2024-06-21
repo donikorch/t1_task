@@ -1,18 +1,24 @@
 import styles from './layout.module.css';
 import Header from '../../ui/Header/Header';
 import Footer from '../../ui/Footer/Footer';
-import ComponentProps from '../../interfaces';
+import { ComponentsProps } from '../../interfaces';
 
-interface LayoutProps extends ComponentProps {
+interface LayoutProps extends ComponentsProps {
   children: React.ReactNode;
+  footer?: boolean;
 }
 
-function Layout({ variant = 'primary', size = 'big', children }: LayoutProps) {
+function Layout({
+  variant = 'primary',
+  size = 'big',
+  footer = true,
+  children,
+}: LayoutProps) {
   return (
     <>
       <Header variant={variant} size={size} />
       <main className={styles.main}>{children}</main>
-      <Footer variant={variant} />
+      {footer && <Footer variant={variant} />}
     </>
   );
 }

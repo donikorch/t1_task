@@ -1,7 +1,7 @@
 import { useAppSelector } from '../../../app/store';
 import OrderLine from '../../ui/OrderLine/OrderLine';
 import Layout from '../Layout/Layout';
-import { Product } from '../../types';
+import { Order } from '../../types';
 import styles from './cart.module.css';
 
 function Cart() {
@@ -14,7 +14,7 @@ function Cart() {
         <article className={styles.section}>
           {carts[0] ? (
             <div className={styles.container}>
-              {carts[0]?.products.map((item: Product) => (
+              {carts[0]?.products.map((item: Order) => (
                 <OrderLine key={item.id} index={item.id} item={item} />
               ))}
             </div>
@@ -30,12 +30,14 @@ function Cart() {
             </p>
             <p>
               Total price:
-              <span aria-label='total price'>{carts[0]?.total || 0}$</span>
+              <span aria-label='total price'>
+                {carts[0]?.total.toFixed(2) || 0}$
+              </span>
             </p>
             <p>
               Total price with discount:
               <span aria-label='total price with discount'>
-                {carts[0]?.discountedTotal || 0}$
+                {carts[0]?.discountedTotal.toFixed(2) || 0}$
               </span>
             </p>
           </div>

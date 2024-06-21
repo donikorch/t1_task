@@ -3,14 +3,15 @@ import CartIcon from '../Icons/CartIcon';
 import PlusMinusIcon from '../Icons/PlusMinusIcon';
 import React from 'react';
 
-import ComponentProps from '../../interfaces';
+import { ComponentsProps } from '../../interfaces';
 
-export interface ButtonProps extends Omit<ComponentProps, 'variant'> {
+export interface ButtonProps extends Omit<ComponentsProps, 'variant'> {
   children?: string | React.ReactNode;
   variant?: 'default' | 'plus' | 'minus' | 'cart';
   size?: 'big' | 'small';
-  onClick?: () => void;
+  onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
   type?: 'button' | 'submit' | 'reset';
+  disabled?: boolean;
 }
 
 const Button: React.FC<ButtonProps> = ({
@@ -19,6 +20,7 @@ const Button: React.FC<ButtonProps> = ({
   size = 'small',
   onClick,
   type = 'button',
+  disabled = false,
 }) => {
   let content: JSX.Element | React.ReactNode | string | undefined = children;
 
@@ -31,9 +33,10 @@ const Button: React.FC<ButtonProps> = ({
   return (
     <button
       type={type}
-      className={`${styles.button} ${styles[variant]} ${styles[size]}`}
+      className={`${styles.button} ${styles[variant]} ${styles[size]} ${disabled ? styles.disabled : ''}`}
       aria-label={typeof children === 'string' ? children : 'Button'}
       onClick={onClick}
+      disabled={disabled}
     >
       {content}
     </button>

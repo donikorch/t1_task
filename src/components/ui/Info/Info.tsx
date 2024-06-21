@@ -1,9 +1,13 @@
 import { useAppSelector } from '../../../app/store';
+import { calculateDiscountPrice } from '../../../app/utils/calculateDiscountPrice';
 import { Order, Product } from '../../types';
+import { generateStarArray } from '../../../app/utils/generateStarArray';
 import Button from '../Button/Button';
 import Counter from '../Counter/Counter';
 import StarIcon from '../Icons/StarIcon';
 import styles from './info.module.css';
+import { useQuantity } from '../../../app/hooks/useQuantity';
+import { useGetProductsByIdQuery } from '../../../app/api/productsApi';
 
 type InfoProps = {
   item: Product;
@@ -11,13 +15,31 @@ type InfoProps = {
 
 function Info({ item }: InfoProps) {
   const carts = useAppSelector((store) => store.carts.carts);
-  const product: Order = carts[0].products.filter(
-    (product: Product) => product.id === item.id,
-  )[0];
+  const product: Order | undefined = carts[0].products.find(
+    (product) => product.id === item.id,
+  );
 
-  const stars = new Array(Math.round(item.rating)).fill(0);
-  const discountPrice =
-    item.price - item.price * (item.discountPercentage / 100);
+  const stars = generateStarArray(item.rating);
+  const discountPrice = calculateDiscountPrice(item);
+
+  const accessToken = localStorage.getItem('access');
+  const { data } = useGetProductsByIdQuery({
+    productId: item.id,
+    token: accessToken,
+  });
+  const { addProductToCart, updateProductQuantity } = useQuantity();
+
+  const handleAddProductToCart = (
+    event: React.MouseEvent<HTMLButtonElement>,
+  ) => {
+    event.preventDefault();
+    event.stopPropagation();
+    addProductToCart(item.id);
+  };
+
+  const handleUpdateQuantity = (action: 'increment' | 'decrement') => {
+    updateProductQuantity(item.id, action);
+  };
 
   return (
     <div className={styles.info}>
@@ -27,16 +49,9 @@ function Info({ item }: InfoProps) {
           <p>
             Rating
             <span className={styles.rating}>
-              {stars.map((_, index) => (
+              {stars.map((star, index) => (
                 <StarIcon
-                  color='#F14F4F'
-                  key={index}
-                  aria-label={`Star ${index + 1}`}
-                />
-              ))}
-              {new Array(5 - stars.length).fill(0).map((_, index) => (
-                <StarIcon
-                  color='#B2B5BB'
+                  color={star ? '#F14F4F' : '#B2B5BB'}
                   key={index}
                   aria-label={`Star ${index + 1}`}
                 />
@@ -69,10 +84,17 @@ function Info({ item }: InfoProps) {
       </div>
       {product ? (
         <>
-          <Counter size='big' count={product.quantity} />
+          <Counter
+            stock={data.stock}
+            onUpdateQuantity={handleUpdateQuantity}
+            size='big'
+            count={product.quantity}
+          />
         </>
       ) : (
-        <Button aria-label='Add to cart'>Add to cart</Button>
+        <Button onClick={handleAddProductToCart} aria-label='Add to cart'>
+          Add to cart
+        </Button>
       )}
     </div>
   );

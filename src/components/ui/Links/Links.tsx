@@ -2,10 +2,10 @@ import { Link, NavLink } from 'react-router-dom';
 import styles from './links.module.css';
 import CartIcon from '../Icons/CartIcon';
 
-import ComponentProps from '../../interfaces';
+import { ComponentsProps } from '../../interfaces';
 import { useAppSelector } from '../../../app/store';
 
-interface LinksProps extends ComponentProps {
+interface LinksProps extends ComponentsProps {
   menu?: boolean;
 }
 

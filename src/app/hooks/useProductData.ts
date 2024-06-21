@@ -12,11 +12,13 @@ export function useProductData() {
   const [query, setQuery] = useState('');
   const [debouncedQuery, setDebouncedQuery] = useState(query);
   const [skipProducts, setSkipProducts] = useState<number>(getRandom());
+  const accessToken = localStorage.getItem('access');
 
   const { data, error, isLoading, refetch } = useGetProductsQuery({
     q: debouncedQuery,
     limit: '9',
     skip: `${skipProducts}`,
+    token: accessToken,
   });
 
   useEffect(() => {

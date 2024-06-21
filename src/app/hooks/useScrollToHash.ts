@@ -5,20 +5,16 @@ export function useScrollToHash(isLoading: boolean) {
   const location = useLocation();
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      if (!isLoading) {
-        const hash = window.location.hash;
-        if (hash) {
-          const item = document.querySelector(hash);
-          if (item) {
+    if (!isLoading) {
+      const hash = window.location.hash;
+      if (hash) {
+        const item = document.querySelector(hash);
+        if (item) {
+          requestAnimationFrame(() => {
             item.scrollIntoView({ behavior: 'smooth' });
-          }
+          });
         }
       }
-    }, 0);
-
-    return () => {
-      clearTimeout(timer);
-    };
+    }
   }, [location, isLoading]);
 }
