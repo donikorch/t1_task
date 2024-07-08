@@ -1,3 +1,5 @@
+Интернет-магазин Goods4you
+
 В рамках открытой школы Холдинга Т1 необходимо было разработать адаптивный веб-сайт магазина с моковым api.
 Стек: TypeScript, React, Redux, Redux Toolkit, RTK Query, Storybook, Vite.
 
